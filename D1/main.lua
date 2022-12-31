@@ -1,19 +1,23 @@
-local sums = {}
-local sum = 0
+t = {}
+e = 0
 
-for line in io.lines('input.in') do
- if line ~= '' then
-  sum = sum + tonumber(line)
+file = io.open("input.in")
+
+for lines in file:lines() do
+  if lines ~= '' then
+    e = e + tonumber(lines)
   else
-    table.insert(sums, sum)
-    sum = 0
- end
+    table.insert(t, e)
+    e = 0
+  end
 end
 
-table.sort(sums)
+file:close()
+
+table.sort(t)
 
 -- Puzzle 1
-print('puzzle 1 = '..sums[#sums])
+print('puzzle 1: '..t[#t])
 
--- Puzzle 1
-print('puzzle 2 = '..sums[#sums] + sums[#sums-2] + sums[#sums-1])
+-- Puzzle 2
+print('puzzle 2: '..t[#t]..t[#t-2]..t[#t-1])
